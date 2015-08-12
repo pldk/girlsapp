@@ -5,6 +5,13 @@ gem 'rails_12factor', group: :production
 gem 'puma',           group: :production
 gem 'figaro'
 
+gem 'aws-sdk', '< 2.0'
+gem 'paperclip'
+
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'font-awesome-sass', '~> 4.2.0'
+gem 'simple_form'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
