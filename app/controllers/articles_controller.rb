@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  layout 'blog'
+  # layout 'blog'
+  skip_before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -22,10 +23,11 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = Article.new(article_params)
+    @girl = Girl.find(params[:girl_id])
+    @article = @girl.articles.new(article_params)
 
     if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+      redirect_to girl_path(@girl), notice: 'Article was successfully created.'
     else
       render :new
     end
@@ -42,8 +44,11 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1
   def destroy
-    @article.destroy
-    redirect_to articles_url, notice: 'Article was successfully destroyed.'
+    @girl = Article.find(params[:girl_id])
+    @article = @girl.articles.find(params[:id])
+    if @article.delete
+    redirect_to articles_url, notice: 'Article was successfully deleted.'
+    end
   end
 
   private
@@ -54,6 +59,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :body, :picture)
+      params.require(:article).permit(:girl, :title, :body, :picture)
     end
 end

@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag 'application', media: 'all'%>
 
   <%= yield(:stylesheets) %>
-  
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -18,14 +18,16 @@
 </head>
 <body>
 
-<%= render 'shared/navbar' %>
-
 <%= yield %>
 
-<%= render 'shared/footer' %>
+<%= render 'shared/navbar' %>
+<%= render 'shared/notices' %>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <!-- For inserting some analytics script (GA, Mixpanel..) -->
-<%= render "shared/analytics" %>
+
 
 <%= javascript_include_tag 'application' %>
 <%= yield(:js) %>
