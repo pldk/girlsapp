@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
+
+<% if user_signed_in? %>
+  Hello <%= current_user.email %>!
+  <%= link_to 'Sign out', destroy_user_session_path, method: 'delete', class: "btn btn-danger" %>
+<% else %>
+  <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-primary" %>
+  <%= link_to 'Sign in', new_user_session_path, class: "btn btn-success" %>
+<% end %> -->
 
 <h1>Listing Girls</h1>
 
@@ -32,8 +40,8 @@
 
 <div class="container">
   <div class="row">
-  <% @restaurants.each do |r| %>
-    <%= render "restaurant", restaurant: r %>
+  <% @girls.each do |r| %>
+    <%= render "girl", girl: r %>
   <% end %>
   </div>
 </div>
